@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+
+
+  <!-- Fallback for Font family below in noscript [*] -->
+  <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Oswald:300,400,700',  'Open+Sans:400,700' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Your Ethereum Swiss Army Knife">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="news_keywords" content="solidity, dapps, contracts, smart contracts" />
+  <meta name="standout" content="http://truffleframwork.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:site_name" content="Truffle Framework" />
+  <meta property="og:description" content="Your Ethereum Swiss Army Knife" />
+  <meta property="og:title" content="TruffleFramework.com - Truffle Framework" />
+  <meta property="og:url" content="http://truffleframwork.com" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://github.com/trufflesuite/trufflesuite.github.io/raw/master/images/truffle-share.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="Truffle Framework" />
+  <meta name="twitter:title" content="TruffleFramework.com - Truffle Framework" />
+  <meta name="twitter:description" content="Your Ethereum Swiss Army Knife" />
+  <meta name="twitter:creator" content="Truffle Framework" />
+  <meta name="twitter:domain" content="truffleframework.com" />
+  <meta name="twitter:image:src" content="https://github.com/trufflesuite/trufflesuite.github.io/raw/master/images/truffle-share.png" />
+
+
+
+
+  <title>TruffleFramework.com | Robust Smart Contracts with OpenZeppelin</title>
+
+  <link rel="author" href="humans.txt" />
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Truffle Framework">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <noscript>
+    <!-- [*] Web fonts for no-js -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:300,400,700%7COpen+Sans:400,700' rel='stylesheet' type='text/css'>
+  </noscript>
+
+</head>
+
+<body>
+  <main>
+    <section class="Tutorials">
+
+      <section class="MainContent">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="text-center container">
+              <img src="images/open-zeppelin/logo-zeppelin.png" alt="OpenZeppelin">
+            </div>
+
+            <h1><a name="robust-smart-contracts-with-openzeppelin" class="anchor" href="#robust-smart-contracts-with-openzeppelin"><span class="header-link" style="z-index: 9999999715">&nbsp;</span></a>Contratos inteligentes robustos con OpenZeppelin</h1><p>Dado que los contratos inteligentes manejan dinero real, tener nuestro código Solidity libre de errores y altamente seguro es esencial. <a href="https://zeppelin.solutions/">Zeppelin Solutions</a>, un servicio de auditoría de contratos, ha visto esta necesidad. Usando su experiencia, armaron un conjunto de contratos inteligentes aprobados llamado <a href="https://openzeppelin.org/">OpenZeppelin</a>.</p>
+            <p>Podemos usar y extender estos contratos para tener dapps más seguras en menos tiempo. OpenZeppelin viene con contratos inteligentes variados para diversas funciones importantes (<a href="https://github.com/OpenZeppelin/zeppelin-solidity">vealos todos aquí</a>), pero hoy nos enfocaremos en sus contratos de <em>tokens</em>. Específicamente, extenderemos <code>StandardToken.sol</code> para crear nuestro propio <em>token</em>ERC-20.</p>
+            <h2><a name="requirements" class="anchor" href="#requirements"><span class="header-link" style="z-index: 9999999714">&nbsp;</span></a>Requerimientos</h2><p>Este tutorial espera que usted tenga algún conocimiento de Truffle, Ethereum, y Solidity. Si no ha realizado nuestro <a href="/tutorials/pet-shop">tutorial de la tienda de adopciones</a> ese es un excelente lugar para empezar.</p>
+            <p>Para más información sobre estos temas, por favor vea los siguientes links:</p>
+            <ul>
+              <li><a href="/docs/">Truffle documentation</a></li>
+              <li><a href="https://ethereum.org/">Ethereum overview</a></li>
+              <li><a href="https://solidity.readthedocs.io/en/develop/">Solidity documentation</a></li>
+            </ul>
+            <p>Usaremos principalmente la línea de comandos para este tutorial, asegúrese de tener familiaridad básica con abrir y usar la línea de comandos de su sistema operativo.</p>
+            <h2><a name="overview" class="anchor" href="#overview"><span class="header-link" style="z-index: 9999999713">&nbsp;</span></a>Resumen</h2><p>En este tutorial aprenderá como:</p>
+            <ol>
+              <li>Desempacar una caja de Truffle (Truffle box)</li>
+              <li>Crear el contrato <code>TutorialToken</code> basado en el <code>StandardToken</code>de OpenZeppelin</li>
+              <li>Compilar y subir su contrato a TestRPC</li>
+              <li>Interactuar con su token recien creada</li>
+            </ol>
+            <h2><a name="1-unboxing-the-front-end" class="anchor" href="#1-unboxing-the-front-end"><span class="header-link" style="z-index: 9999999712">&nbsp;</span></a>1. Desempacar una caja de Truffle (Truffle box)</h2><p>Hoy nos enfocaremos en la creación de contratos inteligentes. Para ese fin, creamos un front-end para usted empaquetado en una truffle box. Abra la línea de comandos y navegue al folder en el que le gustaría tener sus archivos. Nosotros elegimos la carpeta <code>oz-workspace</code>:</p>
+            <pre class=" language-shell"><code class="language-shell">$ cd oz-workspace<br>$ truffle unbox tutorialtoken
+            </code></pre>
+            <p>Luego, instalamos OpenZeppelin. La versión más reciente de OpenZeppelin puede descargarse como un paquete de NPM.</p>
+            <pre class=" language-shell"><code class="language-shell">$ npm install zeppelin-solidity
+            </code></pre>
+            <h2><a name="2-creating-the-tutorialtoken-smart-contract" class="anchor" href="#2-creating-the-tutorialtoken-smart-contract"><span class="header-link" style="z-index: 9999999711">&nbsp;</span></a>2. Creando el contrato TutorialToken</h2><p>Vamos a crear ahora el contrato <code>TutorialToken</code>. En el directorio <code>contracts</code>creamos el archivo <code>TutorialToken.sol</code> con el siguiente contenido:</p>
+            <pre class=" language-javascript"><code class=" language-javascript">pragma solidity <span class="token operator">^</span><span class="token number">0.4</span><span class="token punctuation">.</span><span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'zeppelin-solidity/contracts/token/StandardToken.sol'</span><span class="token punctuation">;</span>
+
+contract TutorialToken is StandardToken <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+              </code></pre>
+              <p>Además de la configuración inicial de nuestro contrato, estamos importando el contrato <code>StandardToken.sol</code> y declarando que nuestro <code>TutorialToken</code>hereda del contrato  <code>StandardToken</code> utilizando la palabra <code>is</code> . Nuestro contrato <strong>heredará</strong> todas las variables y funciones de <code>StandardToken</code> contract. Las funciones y variables heredadas pueden ser sobreescritas al declararlas de nuevo en el nuevo contrato. Para definir nuestros parámetros para el <em>token</em>Tutorial, declararemos nuestro propio: <code>name</code> (nombre), <code>symbol</code> (símbolo), <code>decimals</code> (decimales) y <code>INITIAL_SUPPLY</code> (susministro inicial).</p>
+            </code></pre>
+            <p>Beyond the standard smart contract setup, we <code>import</code> the <code>StandardToken.sol</code> contract and declare our <code>TutorialToken</code>, using <code>is</code> to inherit from the <code>StandardToken</code> contract. Our contract will <strong>inherit</strong> all variables and functions from the <code>StandardToken</code> contract. Inherited functions and variables can be overwritten by redeclaring them in the new contract. To set our own parameters for the Tutorial Token, we'll be declaring our own <code>name</code>, <code>symbol</code>, <code>decimals</code> and <code>INITIAL_SUPPLY</code>.</p>
+            <pre class=" language-javascript"><code class=" language-javascript">string <span class="token keyword">public</span> name <span class="token operator">=</span> <span class="token string">'TutorialToken'</span><span class="token punctuation">;</span>
+string <span class="token keyword">public</span> symbol <span class="token operator">=</span> <span class="token string">'TT'</span><span class="token punctuation">;</span>
+uint <span class="token keyword">public</span> decimals <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+uint <span class="token keyword">public</span> INITIAL_SUPPLY <span class="token operator">=</span> <span class="token number">12000</span><span class="token punctuation">;</span>
+            </code></pre>
+            <p>Las variables <code>name</code> y <code>symbol</code> le dan a nuestro <em>token</em>una identidad única. La variable <code>decimals</code> determina el grado en el que nuestro <em>token</em>puede ser subdividido. Por ejemplo, estamos usando 2 decimales; similar como funcionan los dólares y los centavos. Finalmente, la variable <code>INITIAL_SUPPLY</code> determina la cantidad de <em>tokens</em> creadas cuando el contrato se sube por primera vez. Para el caso de este tutorial, este número no es importante, elegimos 12000.</p>
+            <p>Finalmente, creamos constructor que defina que <code>totalSupply</code> sea <code>INITIAL_SUPPLY</code> y le de todos los <em>tokens</em> a la dirección que hace la subida del contrato:</p>
+            <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">TutorialToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  totalSupply <span class="token operator">=</span> INITIAL_SUPPLY<span class="token punctuation">;</span>
+  balances<span class="token punctuation">[</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">]</span> <span class="token operator">=</span> INITIAL_SUPPLY<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+            </code></pre>
+          <p>Acabamos de crear nuestro propio <em>token</em>ERC-20 usando menos de 15 líneas de código Solidity. Ahora, vamos a implementar e interactuar con el token.</p>
+          <h2><a name="3-compilation-and-deployment" class="anchor" href="#3-compilation-and-deployment"><span class="header-link" style="z-index: 9999999710">&nbsp;</span></a>3. Compilación e implementación</h2><p>En el directorio <code>/migrations</code>, cree el archivo <code>2_deploy_contracts.js</code> con el siguiente contenido:</p>
+          <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> TutorialToken <span class="token operator">=</span> artifacts<span class="token punctuation">.</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./TutorialToken.sol"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>deployer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  deployer<span class="token punctuation">.</span><span class="token function">deploy</span><span class="token punctuation">(</span>TutorialToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+          <p>Note que la declaración <code>import</code> en el contrato <code>TutorialToken</code> será automáticamente manejada por el compilador, junto con cualquier <code>import</code> subsecuente que <code>StandardToken</code> pudiera tener y así sucesivamente.</p>
+          <p>Ahora podemos simplemente compilar y migrar.</p>
+          <pre class=" language-shell"><code class="language-shell">$ truffle compile
+$ truffle migrate
+          </code></pre>
+          <h2><a name="4-interacting-with-tutorialtoken" class="anchor" href="#4-interacting-with-tutorialtoken"><span class="header-link" style="z-index: 9999999709">&nbsp;</span></a>4. Interactuando con TutorialToken</h2><p>Para esta parte del tutorial, le recomendamos usar la extensión de Chrome MetaMask. Esto nos permitirá cambiar entre cuentas rápidamente, perfecto para probar la habilidad de transferir nuestras <em>tokens</em> recién generadas. <a href="http://localhost:9000/tutorials/pet-shop#using-our-dapp-in-chrome">Clic aquí si necesita ayuda configurando MetaMask para uso con TestRPC</a>.</p>
+          <p>Ya instalamos <code>lite-server</code> para usted, así que correr el front-end es tan sencillo como ejecutar el siguiente comando desde el directorio padre <code>oz-workspace</code>:</p>
+          <pre class=" language-shell"><code class=" language-shell">$ npm run dev
+          </code></pre>
+          <p>Una ventana del navegador debería abrirse automáticamente con la siguiente interfaz:</p>
+          <div class="text-center container">
+            <img src="images/open-zeppelin/tt-wallet.png" alt="TutorialToken Wallet">
+            <p class="caption">El wallet de TutorialToken.</p><br/>
+          </div>
+
+          <p>Nuestra dapp básica enseña el balance de la cuenta seleccionada en MetaMask.</p>
+          <p>Trate de transferir <em>tokens</em> a una cuenta diferente, aquí movimos 2000 TT a la segunda cuenta.</p>
+          <div class="text-center container">
+            <img src="images/open-zeppelin/tt-wallet-transfer.png" alt="TutorialToken Wallet">
+            <p class="caption">2000TT movidos a la cuenta 2.</p><br/>
+          </div>
+
+          <h2><a name="truffle-openzeppelin-a-superb-development-experience" class="anchor" href="#truffle-openzeppelin-a-superb-development-experience"><span class="header-link" style="z-index: 9999999708">&nbsp;</span></a>Truffle + OpenZeppelin = Una excelente experiencia de desarrollo</h2><p>Nosotros en Truffle estamos emocionados de ver compañías como Zeppelin Solutions contribuyendo a la estandarización y seguridad de contratos inteligentes. Con los contratos de OpenZeppelin y las herramientas de Truffle, usted tiene todo lo necesario para crear aplicaciones distribuidas con estándares de la industria.</p>
+        </div>
+        </div
+      </section>
+    </section>
+
+  </main>
+
+</body>
+</html>
